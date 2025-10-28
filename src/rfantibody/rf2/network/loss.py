@@ -2,10 +2,10 @@ import torch
 import torch.nn as nn
 import numpy as np
 from torch import einsum
-from chemical import aa2num
-from util import rigid_from_3_points
-from kinematics import get_dih
-from scoring import HbHybType
+from rfantibody.rf2.network.chemical import aa2num
+from rfantibody.rf2.network.util import rigid_from_3_points
+from rfantibody.rf2.network.kinematics import get_dih
+from rfantibody.rf2.network.scoring import HbHybType
 
 # Loss functions for the training
 # 1. BB rmsd loss

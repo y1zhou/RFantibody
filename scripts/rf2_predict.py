@@ -3,7 +3,7 @@ import torch
 import hydra
 from hydra.core.hydra_config import HydraConfig
 
-import rfantibody.rf2.modules.util as util
+from rfantibody.rf2.modules import util
 import rfantibody.rf2.modules.pose_util as pu
 from rfantibody.rf2.modules.model_runner import AbPredictor
 from rfantibody.rf2.modules.preprocess import pose_to_inference_RFinput, Preprocess

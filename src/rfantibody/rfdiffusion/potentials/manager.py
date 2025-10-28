@@ -1,7 +1,7 @@
 import torch
 import numpy as np 
 
-import rfantibody.rfdiffusion.potentials.potentials as potentials
+from rfantibody.rfdiffusion.potentials import potentials
 
 
 def make_contact_matrix(nchain, intra_all=False, inter_all=False, contact_string=None):

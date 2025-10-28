@@ -7,7 +7,7 @@ import torch.nn as nn
 
 from omegaconf import OmegaConf
 
-import rfantibody.rf2.modules.rmsd as rmsd
+from rfantibody.rf2.modules import rmsd
 from rfantibody.rf2.network.predict import pae_unbin, Predictor
 import rfantibody.rf2.modules.pose_util as pu
 

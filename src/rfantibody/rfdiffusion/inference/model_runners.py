@@ -9,7 +9,8 @@ from icecream import ic
 import logging
 from hydra.core.hydra_config import HydraConfig
 
-import rfantibody.rfdiffusion.util
+import rfantibody
+from rfantibody.rfdiffusion import util
 from rfantibody.rfdiffusion.inference import ab_pose
 from rfantibody.rfdiffusion.RoseTTAFoldModel import RoseTTAFoldModule
 from rfantibody.rfdiffusion.kinematics import get_init_xyz, xyz_to_t2d
@@ -27,9 +28,12 @@ from rfantibody.rfdiffusion.inference.ab_util import \
     correct_selfcond, \
     featurize
 
-TOR_INDICES  = rfantibody.rfdiffusion.util.torsion_indices
-TOR_CAN_FLIP = rfantibody.rfdiffusion.util.torsion_can_flip
-REF_ANGLES   = rfantibody.rfdiffusion.util.reference_angles
+# TOR_INDICES  = rfantibody.rfdiffusion.util.torsion_indices
+# TOR_CAN_FLIP = rfantibody.rfdiffusion.util.torsion_can_flip
+# REF_ANGLES   = rfantibody.rfdiffusion.util.reference_angles
+from rfantibody.rfdiffusion.util import torsion_indices as TOR_INDICES
+from rfantibody.rfdiffusion.util import torsion_can_flip as TOR_CAN_FLIP
+from rfantibody.rfdiffusion.util import reference_angles as REF_ANGLES
 
 
 class Sampler:
