@@ -1,46 +1,62 @@
-[tool.poetry]
+[project]
 name = "rfantibody"
 version = "1.0.0"
-description = ""
+description = "Structure-Based de novo Antibody Design"
 authors = [
-  "Nate Bennett <nrbennett2@gmail.com>",
-  "Joe Watchwell <joe.watchwell@gmail.com>"
+    { name = "Nate Bennett", email = "nrbennett2@gmail.com" },
+    { name = "Joe Watchwell", email = "joe.watchwell@gmail.com" },
 ]
+requires-python = "==3.10.*"
 readme = "README.md"
-packages = [
-{include = "rfantibody", from = "src"},
-{include = "include"},
-{include = "se3_transformer", from = "include/SE3Transformer"}
+dependencies = [
+    "torch==2.3.*",
+    # "torchaudio",
+    # "torchvision",
+    "torch-utils",
+    "numpy==1.*",
+    "cuda-python==11.8",
+    "hydra-core",
+    "icecream",
+    "opt-einsum",
+    "dgl",
+    "e3nn",
+    "pyrsistent",
+    "biotite>=1.2.0",
 ]
 
-[[tool.poetry.source]]
-name = "pypi"
-priority = "primary"
+[dependency-groups]
+test = ["pytest>=8.0.0,<9", "pandas"]
 
-[[tool.poetry.source]]
+[tool.uv]
+default-groups = ["test"]
+
+[[tool.uv.index]]
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cu118"
-priority = "explicit"
+explicit = true
 
-[tool.poetry.dependencies]
-python = "3.10.*"
-torch = { version="2.3.*", source="pytorch" }
-torchaudio = "*"
-torchvision = "*"
-torch-utils = "*"
-numpy = "1.*"
-cuda-python = "11.8"
-hydra-core = "*"
-icecream = "*"
-opt-einsum = "*"
-dgl = { file = "./include/dgl/dgl-2.4.0+cu118-cp310-cp310-manylinux1_x86_64.whl" }
-e3nn = "*"
-pyrsistent = "*"
+[tool.uv.sources]
+torch = { index = "pytorch", marker = "sys_platform == 'linux' or sys_platform == 'win32'" }
+dgl = { path = "include/dgl/dgl-2.4.0+cu118-cp310-cp310-manylinux1_x86_64.whl" }
 
-[tool.poetry.group.test]
-optional = true
+# [tool.hatch.build.targets.sdist]
+# include = [
+#     "src/rfantibody",
 
-[tool.poetry.group.test.dependencies]
-pytest = "^8.0.0"
-pandas = "*"
+#     "include",
+#     "include/SE3Transformer/se3_transformer",
+# ]
 
+# [tool.hatch.build.targets.wheel]
+# include = [
+#     "src/rfantibody",
+#     "include",
+#     "include/SE3Transformer/se3_transformer",
+# ]
+
+# [tool.hatch.build.targets.wheel.sources]
+# "src/rfantibody" = "rfantibody"
+# "include/SE3Transformer/se3_transformer" = "se3_transformer"
+[build-system]
+requires = ["uv_build>=0.9.0,<0.10.0"]
+build-backend = "uv_build"
